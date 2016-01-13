@@ -2,7 +2,6 @@
   "node" : true,
   "undef" : true,
   "globals"   : {
-    /* MOCHA */
     "describe"   : false,
     "it"         : false,
     "before"     : false,
