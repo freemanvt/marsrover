@@ -1,0 +1,21 @@
+{
+  "name": "minicabit",
+  "version": "1.0.0",
+  "description": "Mars rover assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test/*.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.14.2",
+    "chai": "^3.4.1",
+    "express": "^4.13.3",
+    "lodash": "^3.10.1",
+    "mocha": "^2.3.4",
+    "multer": "^1.1.0",
+    "supertest": "^1.1.0"
+  }
+}
