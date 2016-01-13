@@ -21,7 +21,7 @@ function Plateau(x, y) {
  */
 Plateau.prototype.getMaxX = function () {
     return this.maxX;
-}
+};
 
 /**
  * return maximum y coordinate
@@ -29,7 +29,7 @@ Plateau.prototype.getMaxX = function () {
  */
 Plateau.prototype.getMaxY = function () {
     return this.maxY;
-}
+};
 
 /**
  * return minimum x coordinate
@@ -37,7 +37,7 @@ Plateau.prototype.getMaxY = function () {
  */
 Plateau.prototype.getMinX = function () {
     return this.minX;
-}
+};
 
 /**
  * return minimum y coordinate
@@ -45,7 +45,7 @@ Plateau.prototype.getMinX = function () {
  */
 Plateau.prototype.getMinY = function () {
     return this.minY;
-}
+};
 
 /**
  * check if the position is valid on the plateau
@@ -57,6 +57,6 @@ Plateau.prototype.isValidPosition = function(x, y) {
         return true;
     }
     return false;
-}
+};
 
 module.exports = Plateau;

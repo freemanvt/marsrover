@@ -68,12 +68,12 @@ Rover.prototype.getDirection = function() {
 Rover.prototype.turnLeft = function() {
     this.direction = calculateNewDirection(this.direction, 'L');
     return this;
-}
+};
 
 Rover.prototype.turnRight = function() {
     this.direction = calculateNewDirection(this.direction, 'R');
     return this;
-}
+};
 
 /**
  * function to calculate the new direction the Rover is facing after a turn
@@ -127,18 +127,18 @@ Rover.prototype.moveForward = function() {
         this.x -= 1;
     }
     return this;
-}
+};
 
 Rover.prototype.toString = function() {
     return this.x + ' ' + this.y + ' ' + this.direction;
-}
+};
 
 Rover.prototype.toJson = function() {
     return {
         x : this.x,
         y : this.y,
         direction : this.direction
-    }
-}
+    };
+};
 
 module.exports = Rover;

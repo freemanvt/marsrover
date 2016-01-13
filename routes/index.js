@@ -4,4 +4,4 @@
 module.exports = {
     mission : require('./mission'),
     rover : require('./rover')
-}
+};

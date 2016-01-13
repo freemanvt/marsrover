@@ -4,6 +4,7 @@
   "description": "Mars rover assignment",
   "main": "server.js",
   "scripts": {
+    "lint" : "jshint **/*js",
     "test": "./node_modules/mocha/bin/mocha test/*.js"
   },
   "keywords": [],
@@ -18,6 +19,7 @@
   "devDependencies": {
     "chai": "^3.4.1",
     "mocha": "^2.3.4",
+    "jshint": "^2.9.1",
     "supertest": "^1.1.0"
   }
 }

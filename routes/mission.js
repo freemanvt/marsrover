@@ -35,7 +35,7 @@ router.post('/:id/rover', function(req, res) {
             console.dir(data);
             res.json(data);
         }
-    })
+    });
 });
 
 // create a new mission, with the given plateau coordinates

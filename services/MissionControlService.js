@@ -47,7 +47,7 @@ var MissionControlService = (function() {
             return {
                 roverId : roverId,
                 position : rover.toJson()
-            }
+            };
         }
 
 
@@ -76,7 +76,7 @@ var MissionControlService = (function() {
                 var roverObj = {
                     rover : rover,
                     missionId : missionId
-                }
+                };
                 rovers[roverId] = roverObj; // store over rover object and link it to the missionId
 
                 // create our response
@@ -100,7 +100,7 @@ var MissionControlService = (function() {
                 var arr = [];
                 rovers.forEach(function(o) {
                     arr.push(o.toJson());
-                })
+                });
 
                 response.rovers = arr;
 
@@ -109,7 +109,7 @@ var MissionControlService = (function() {
 
             // Get a rover by Id
             getRoverById : function(roverId, callback) {
-                console.log('roverId', roverId)
+                console.log('roverId', roverId);
                 var roverObj = rovers[roverId];
                 // create our response
                 var response = createRoverResponse(roverId, roverObj.rover);

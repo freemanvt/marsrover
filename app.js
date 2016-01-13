@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 // Security filter
 var authenticateHeader = function (req, res, next) {
     next();
-}
+};
 
 app.use(baseUrl + '/mission', [authenticateHeader], routes.mission);
 

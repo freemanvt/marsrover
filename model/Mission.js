@@ -34,7 +34,7 @@ Mission.prototype.sendCommand = function(cmd) {
             throw new errors.MissionInvalidCommandError('Invalid command, Rover command should be an array e.g. [\'\',\'\']');
         }
     }
-}
+};
 
 Mission.prototype.moveRover = function(rover, movement) {
     movement.split('').forEach(function(m) {
@@ -48,7 +48,7 @@ Mission.prototype.moveRover = function(rover, movement) {
             throw new errors.MissionInvalidCommandError('Invalid command, please check your movement command [' + movement + ']');
         }
     });
-}
+};
 
 /**
  * execute a list of command for this mission
@@ -76,18 +76,18 @@ Mission.prototype.sendCommands = function(input) {
     this.rovers.forEach(function(value, index, arr) {
         output += value.toString();
         if (index < arr.length -1) {
-            output += '\n'
+            output += '\n';
         }
     });
     return output;
-}
+};
 
 Mission.prototype.getPlateau = function() {
     return this.plateau;
-}
+};
 
 Mission.prototype.getRovers = function() {
     return this.rovers;
-}
+};
 
 module.exports = Mission;

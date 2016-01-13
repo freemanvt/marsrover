@@ -24,7 +24,7 @@ describe('Rover test suite', function() {
         assert.isNotNull(rover);
         assert.isNotNull(rover.getPlateau());
         assert.equal(rover.getPlateau().getMaxX(), 6, 'Rover\'s plateau should be max X 6');
-        assert.equal(rover.getPlateau().getMaxY(), 6, 'Rover\'s plateau should be max y 6')
+        assert.equal(rover.getPlateau().getMaxY(), 6, 'Rover\'s plateau should be max y 6');
 
     });
 

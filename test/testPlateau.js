@@ -34,7 +34,7 @@ describe('plateau test suite', function() {
 
         assert.isNull(invalidmarsplateau);
 
-    })
+    });
 
     /**
      * test if we can access some coordinates on the plateau
@@ -47,7 +47,7 @@ describe('plateau test suite', function() {
         assert.notOk(marsplateau.isValidPosition(6,5), '6,5 invalid position in plateau with max coordinates 5,5');
         assert.notOk(marsplateau.isValidPosition(5,7), '5,7 invalid position in plateau with max coordinates 5,5');
 
-    })
+    });
 
 
 });
