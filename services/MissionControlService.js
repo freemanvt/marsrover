@@ -1,7 +1,7 @@
 /**
  * Stub mission control service
  *
- * real code work interact with some external storage
+ * real code would normally interact with some external service/storage
  *
  * Created by vinhta on 13/01/2016.
  */
@@ -37,6 +37,19 @@ var MissionControlService = (function() {
 
         var roverIdCounter = 20001;
 
+        /**
+         * create a Rover response
+         * @param roverId
+         * @param rover
+         * @returns {{roverId: *, position: {x, y, direction}}}
+         */
+        function createRoverResponse(roverId, rover) {
+            return {
+                roverId : roverId,
+                position : rover.toJson()
+            }
+        }
+
 
         // public method
         return {
@@ -67,22 +80,39 @@ var MissionControlService = (function() {
                 rovers[roverId] = roverObj; // store over rover object and link it to the missionId
 
                 // create our response
-                var response = {
-                    roverId : roverId,
-                    position : rover.toString()
-                }
+                var response = createRoverResponse(roverId, rover);
                 callback(null, response);
 
+            },
+
+            getMissionById : function(missionId, callback) {
+                var mission = missions[missionId];
+                var rovers = mission.getRovers();
+                var plateau = mission.getPlateau();
+
+                var response = {
+                    missionId : missionId,
+                    plateau : {
+                        maxX : plateau.getMaxX(),
+                        maxY : plateau.getMaxY(),
+                    }
+                };
+                var arr = [];
+                rovers.forEach(function(o) {
+                    arr.push(o.toJson());
+                })
+
+                response.rovers = arr;
+
+                callback(null, response);
             },
 
             // Get a rover by Id
             getRoverById : function(roverId, callback) {
                 console.log('roverId', roverId)
                 var roverObj = rovers[roverId];
-                var response = {
-                    roverId : roverId,
-                    position : roverObj.rover.toString()
-                }
+                // create our response
+                var response = createRoverResponse(roverId, roverObj.rover);
                 callback(null, response);
             },
 
@@ -97,10 +127,7 @@ var MissionControlService = (function() {
                 var mission = missions[roverObj.missionId];
                 var rover = roverObj.rover;
                 mission.moveRover(rover, movement);
-                var response = {
-                    roverId : roverId,
-                    position : rover.toString()
-                }
+                var response = createRoverResponse(roverId, rover);
                 callback(null, response);
             }
 

@@ -25,6 +25,31 @@ describe('Test our Mars mission rover api', function() {
             .expect(/missionId/, done);
     });
 
+    /**
+     * testing that we can retrieve a mission GET /mission/:id
+     */
+    it('get a mission', function(done) {
+        var missionId;
+        var agent = request(app); // pass in app server to request
+        agent.post(baseUrl + '/mission')
+            .type('json')
+            .send('{"plateauSize" : "10 5"}')
+            .end(function(err, res) {
+                // extract missionId
+                var jsonObj = res.body;
+                console.log(jsonObj.missionId);
+                missionId = jsonObj.missionId;
+                agent.post(baseUrl + '/mission/' + missionId + '/rover')
+                    .type('json')
+                    .send('{"position" : "1 2 N", "movement" : "LMLMLMLMM"}')
+                    .end(function (err, res) {
+                        agent.get(baseUrl + '/mission/' + missionId)
+                            .expect(200)
+                            .expect(/missionId/, done);
+
+                    });
+            });
+    });
 
     /**
      * testing we can create a rover for a mission and set its starting position POST /mission/:missionId/rover
@@ -72,7 +97,7 @@ describe('Test our Mars mission rover api', function() {
                         var roverObj = res.body;
                         agent.get(baseUrl + '/rover/' + roverObj.roverId)
                             .expect(200)
-                            .expect(/1 3 N/, done);
+                            .expect(/{"x":1,"y":3,"direction":"N"}/, done);
 
                     });
             });
@@ -103,7 +128,7 @@ describe('Test our Mars mission rover api', function() {
                             .type('json')
                             .send('{"movement" : "RMRM"}')
                             .expect(200)
-                            .expect(/2 2 S/, done); // after creating a movement of RMRM, the end position for the rover will be 2 2 S
+                            .expect(/{"x":2,"y":2,"direction":"S"}/, done); // after creating a movement of RMRM, the end position for the rover will be 2 2 S
 
                     });
             });

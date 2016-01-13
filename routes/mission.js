@@ -13,7 +13,15 @@ router.use(function timeLog(req, res, next) {
 
 // get
 router.get('/:id', function(req, res) {
-    res.send('get mission with ' + req.params.id);
+    mcs.getMissionById(req.params.id, function(err, data) {
+        if (err) {
+            // TODO: handle error
+
+        } else {
+            console.dir(data);
+            res.json(data);
+        }
+    });
 });
 
 // post

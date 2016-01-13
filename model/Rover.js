@@ -133,4 +133,12 @@ Rover.prototype.toString = function() {
     return this.x + ' ' + this.y + ' ' + this.direction;
 }
 
+Rover.prototype.toJson = function() {
+    return {
+        x : this.x,
+        y : this.y,
+        direction : this.direction
+    }
+}
+
 module.exports = Rover;
