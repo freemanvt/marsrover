@@ -7,7 +7,7 @@
  */
 var Mission = require('./../model/Mission');
 
-// singleton DAO
+// singleton
 var MissionControlService = (function() {
 
     var instance;
