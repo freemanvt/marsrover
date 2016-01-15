@@ -18,9 +18,9 @@ var authenticateHeader = function (req, res, next) {
     next();
 };
 
-app.use(baseUrl + '/mission', [authenticateHeader], routes.mission);
+app.use(baseUrl + '/missions', [authenticateHeader], routes.mission);
 
-app.use(baseUrl + '/rover', [authenticateHeader], routes.rover);
+app.use(baseUrl + '/rovers', [authenticateHeader], routes.rover);
 
 module.exports = app;
 

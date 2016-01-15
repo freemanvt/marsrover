@@ -25,7 +25,7 @@ router.get('/:id', function(req, res) {
 });
 
 // post
-router.post('/:id/rover', function(req, res) {
+router.post('/:id/rovers', function(req, res) {
     console.log("body [" + JSON.stringify(req.body) + "]") ;
     mcs.createRoverForMission(req.params.id, req.body.position, req.body.movement, function (err, data) {
         if (err) {

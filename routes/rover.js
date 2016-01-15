@@ -26,7 +26,7 @@ router.get('/:id', function(req, res) {
 });
 
 // move a rover by creating a new movement for it
-router.post('/:id/move', function(req, res) {
+router.post('/:id/moves', function(req, res) {
     console.log('id', req.params.id);
     mcs.moveRover(req.params.id, req.body.movement, function(err, data) {
         if (err) {

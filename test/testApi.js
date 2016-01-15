@@ -18,7 +18,7 @@ describe('Test our Mars mission rover api', function() {
      */
     it('create a mission by post request that contains json payload for the plateau coordinates', function(done) {
         request(app) // pass in app server to request
-            .post(baseUrl + '/mission')
+            .post(baseUrl + '/missions')
             .type('json')
             .send('{"plateauSize" : "5 5"}')
             .expect(200)
@@ -31,7 +31,7 @@ describe('Test our Mars mission rover api', function() {
     it('get a mission', function(done) {
         var missionId;
         var agent = request(app); // pass in app server to request
-        agent.post(baseUrl + '/mission')
+        agent.post(baseUrl + '/missions')
             .type('json')
             .send('{"plateauSize" : "10 5"}')
             .end(function(err, res) {
@@ -39,11 +39,11 @@ describe('Test our Mars mission rover api', function() {
                 var jsonObj = res.body;
                 console.log(jsonObj.missionId);
                 missionId = jsonObj.missionId;
-                agent.post(baseUrl + '/mission/' + missionId + '/rover')
+                agent.post(baseUrl + '/missions/' + missionId + '/rovers')
                     .type('json')
                     .send('{"position" : "1 2 N", "movement" : "LMLMLMLMM"}')
                     .end(function (err, res) {
-                        agent.get(baseUrl + '/mission/' + missionId)
+                        agent.get(baseUrl + '/missions/' + missionId)
                             .expect(200)
                             .expect(/missionId/, done);
 
@@ -57,7 +57,7 @@ describe('Test our Mars mission rover api', function() {
     it('for a mission create a rover by post request that contains json payload of its starting position', function(done) {
         var missionId;
         var agent = request(app); // pass in app server to request
-        agent.post(baseUrl + '/mission')
+        agent.post(baseUrl + '/missions')
             .type('json')
             .send('{"plateauSize" : "5 5"}')
             .end(function(err, res) {
@@ -65,7 +65,7 @@ describe('Test our Mars mission rover api', function() {
                 var jsonObj = res.body;
                 console.log(jsonObj.missionId);
                 missionId = jsonObj.missionId;
-                agent.post(baseUrl + '/mission/' + missionId + '/rover')
+                agent.post(baseUrl + '/missions/' + missionId + '/rovers')
                     .type('json')
                     .send('{"position" : "1 2 N", "movement" : "LMLMLMLMM"}')
                     .expect(200)
@@ -81,7 +81,7 @@ describe('Test our Mars mission rover api', function() {
     it('get rover based on id', function(done) {
         var missionId;
         var agent = request(app); // pass in app server to request
-        agent.post(baseUrl + '/mission') // create our mission
+        agent.post(baseUrl + '/missions') // create our mission
             .type('json')
             .send('{"plateauSize" : "5 5"}')
             .end(function(err, res) {
@@ -89,13 +89,13 @@ describe('Test our Mars mission rover api', function() {
                 var jsonObj = res.body;
                 console.log(jsonObj.missionId);
                 missionId = jsonObj.missionId;
-                agent.post(baseUrl + '/mission/' + missionId + '/rover') // create our rover
+                agent.post(baseUrl + '/missions/' + missionId + '/rovers') // create our rover
                     .type('json')
                     .send('{"position" : "1 2 N", "movement" : "LMLMLMLMM"}')
                     .end(function(err, res) {
                         // extract roverID
                         var roverObj = res.body;
-                        agent.get(baseUrl + '/rover/' + roverObj.roverId)
+                        agent.get(baseUrl + '/rovers/' + roverObj.roverId)
                             .expect(200)
                             .expect(/{"x":1,"y":3,"direction":"N"}/, done);
 
@@ -110,7 +110,7 @@ describe('Test our Mars mission rover api', function() {
     it('start sending movement command to rover', function(done) {
         var missionId;
         var agent = request(app); // pass in app server to request
-        agent.post(baseUrl + '/mission') // create our mission
+        agent.post(baseUrl + '/missions') // create our mission
             .type('json')
             .send('{"plateauSize" : "5 5"}')
             .end(function(err, res) {
@@ -118,13 +118,13 @@ describe('Test our Mars mission rover api', function() {
                 var jsonObj = res.body;
                 console.log(jsonObj.missionId);
                 missionId = jsonObj.missionId;
-                agent.post(baseUrl + '/mission/' + missionId + '/rover') // create our rover
+                agent.post(baseUrl + '/missions/' + missionId + '/rovers') // create our rover
                     .type('json')
                     .send('{"position" : "1 2 N", "movement" : "LMLMLMLMM"}')
                     .end(function(err, res) {
                         // extract roverID
                         var roverObj = res.body;
-                        agent.post(baseUrl + '/rover/' + roverObj.roverId + '/move')
+                        agent.post(baseUrl + '/rovers/' + roverObj.roverId + '/moves')
                             .type('json')
                             .send('{"movement" : "RMRM"}')
                             .expect(200)
